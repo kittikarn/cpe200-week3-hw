@@ -7,19 +7,31 @@ public class Course {
 
     public Course() {
         this("","","",30);
+        course_name = "TBA";
+        course_id="000000";
+        lecturer ="TBA";
+        max_students = 30;
+        no_students=0;
     }
 
     public Course(String n, String cid) {
-        // implement here
+        this.course_name = !n.equalsIgnoreCase("")?n:"TBA";
+        this.course_id = cid;
     }
 
     public Course(String n, String cid, String l) {
-        // implement here
+        this.course_name = n;
+        this.course_id = cid;
+        this.lecturer = "TBA";
+        this.max_students = 30;
+        this.no_students=0;
     }
 
     public Course(String n, String cid, String l, int max) {
         this.course_name = !n.equalsIgnoreCase("")?n:"TBA";
-        // implement the rest here
+        this.course_id = cid;
+        this.lecturer = l;
+        this.max_students = max;
     }
 
     public String getCourse_name() {
@@ -46,31 +58,47 @@ public class Course {
 
     public void setLecturer(String lecturer) {
         // implement here
+        this.lecturer = !lecturer.equalsIgnoreCase("")?lecturer:this.lecturer;
     }
 
     public int getMax_students() {
         // implement here
-        return 0;
+        return max_students;
     }
 
     public void setMax_students(int max_students) {
         // implement here
+        if(max_students>9){
+            this.max_students = max_students;
+        }
     }
 
     public int getNo_students() {
         // implement here
-        return 0;
+        return no_students;
     }
 
     public void setNo_students(int no_students) {
-        // implement here
+        if(no_students >=0 && no_students<=max_students)
+        {
+            this.no_students = no_students;
+        }
     }
 
     @Override
-    public String toString() {
-        String o = this.course_name + " ("
-                + this.course_id + "), Teacher: "
-                + this.lecturer + ", has ";
+    public String toString()
+    {
+        String ChackS;
+        if(no_students == 0){
+            ChackS = "NO student" + ", [maximum: "+max_students+"]";
+        }
+        else if(no_students == 1){
+            ChackS = "ONE student" + ", [maximum: "+max_students+"]";
+        }
+        else{
+            ChackS = no_students  + " students"+", [maximum: "+max_students+"]";
+        }
+        String o = this.course_name + " (" + this.course_id + "), Teacher: " + this.lecturer + ", has ";
 
         // implement the rest here
 
@@ -83,7 +111,7 @@ public class Course {
 
         // implement the rest here
 
-        return true;
+        return m.matches();
     }
 
     // Regular expression for the Student ID pattern
